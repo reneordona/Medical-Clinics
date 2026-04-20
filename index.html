@@ -300,8 +300,8 @@
   /* Phone/Fax inline split */
   .contact-split {
     display: flex;
-    gap: 3vmin;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.6vmin;
   }
 
   .contact-split .item {
@@ -318,7 +318,11 @@
     color: var(--ink);
   }
 
-  .contact-split .item .num .accent-tel { color: var(--cyan-dark); }
+  .contact-split .item .num .accent-tel {
+    color: var(--cyan-dark);
+    display: inline-block;
+    min-width: 3.5vmin;
+  }
 
   /* ==================== RIGHT — After-Hours Partners ==================== */
   .secondary {
@@ -359,11 +363,10 @@
   .secondary-intro {
     font-family: 'Fraunces', serif;
     font-weight: 400;
-    font-size: 2vmin;
+    font-size: 2.4vmin;
     line-height: 1.4;
     color: var(--ink);
     letter-spacing: -0.005em;
-    max-width: 52ch;
   }
 
   .secondary-intro strong {
