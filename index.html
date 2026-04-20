@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medical Clinics — Long Beach Human Resources</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Primary accent */
+    --cyan: #05c3de;
+    --cyan-dark: #048aa0;
+    --cyan-soft: #e6f9fc;
+    --cyan-softer: #f3fcfd;
+
+    /* Supporting accents */
+    --red: #de3c31;
+    --red-dark: #b52e24;
+    --red-soft: #fde9e7;
+
+    --amber: #f79f1b;
+    --amber-dark: #c97d0b;
+    --amber-soft: #fef3e0;
+
+    --green: #017141;
+    --green-dark: #015a33;
+    --green-soft: #e3f1ea;
+
+    /* Neutrals */
+    --paper: #fafaf7;
+    --paper-warm: #f5f3ed;
+    --ink: #1a2530;
+    --ink-soft: #4a5766;
+    --ink-muted: #7a8695;
+    --rule: #e4e2db;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--paper);
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* All sizing in vmin/vh/vw — scales proportionally from 720p to 4K. */
+  .stage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--paper);
+  }
+
+  /* Warm paper wash */
+  .stage::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 80% 20%, var(--cyan-softer) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 40% at 10% 90%, var(--paper-warm) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .stage::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='250' height='250'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/></svg>");
+    mix-blend-mode: multiply;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* ============ HEADER ============ */
+  .header {
+    position: relative;
+    z-index: 2;
+    height: 11vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6vmin;
+    border-bottom: 0.15vmin solid var(--rule);
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 2.2vmin;
+  }
+
+  .header-left .meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vmin;
+  }
+
+  .header-left .meta .top {
+    font-size: 1.3vmin;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .header-left .meta .bottom {
+    font-family: 'Fraunces', serif;
+    font-size: 2.2vmin;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5vmin;
+  }
+
+  .header-right .pulse {
+    width: 1vmin;
+    height: 1vmin;
+    background: var(--cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 var(--cyan);
+    animation: ping 2.4s ease-out infinite;
+  }
+
+  @keyframes ping {
+    0% { box-shadow: 0 0 0 0 rgba(5, 195, 222, 0.6); }
+    100% { box-shadow: 0 0 0 2.5vmin rgba(5, 195, 222, 0); }
+  }
+
+  .header-right .txt {
+    font-size: 1.3vmin;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  /* ============ MAIN ============ */
+  .main {
+    position: relative;
+    z-index: 2;
+    height: calc(100vh - 11vh - 6vh);
+    padding: 4vmin 6vmin 3vmin 6vmin;
+    display: grid;
+    grid-template-columns: 1.05fr 1.4fr;
+    gap: 4.5vmin;
+    align-items: stretch;
+  }
+
+  /* ==================== LEFT — Occupational Health Services ==================== */
+  .primary {
+    display: flex;
+    flex-direction: column;
+    animation: fadeUp 0.9s 0.15s both cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .primary-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.2vmin;
+    padding: 0.9vmin 1.8vmin;
+    background: var(--cyan-soft);
+    color: var(--cyan-dark);
+    border-radius: 10vmin;
+    font-size: 1.3vmin;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    align-self: flex-start;
+    margin-bottom: 2vmin;
+  }
+
+  .primary-eyebrow .dot {
+    width: 0.7vmin;
+    height: 0.7vmin;
+    background: var(--cyan);
+    border-radius: 50%;
+    animation: pulse-cyan 1.8s ease-in-out infinite;
+  }
+
+  @keyframes pulse-cyan {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+
+  .primary h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 4.6vmin;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 22ch;
+    margin-bottom: 2.5vmin;
+  }
+
+  .primary h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--cyan-dark);
+  }
+
+  .clinic-card {
+    flex: 1;
+    background: #ffffff;
+    border: 0.15vmin solid var(--rule);
+    border-radius: 1.4vmin;
+    padding: 3.5vmin 3.5vmin 3vmin 3.5vmin;
+    display: flex;
+    flex-direction: column;
+    gap: 2.2vmin;
+    box-shadow:
+      0 1vmin 3vmin rgba(26, 37, 48, 0.04),
+      0 0.3vmin 0.8vmin rgba(26, 37, 48, 0.03);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .clinic-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0.6vmin;
+    background: var(--cyan);
+  }
+
+  .clinic-card .clinic-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 3.6vmin;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+
+  .clinic-divider {
+    height: 0.1vmin;
+    background: var(--rule);
+  }
+
+  .clinic-row {
+    display: grid;
+    grid-template-columns: 3.4vmin 1fr;
+    gap: 1.8vmin;
+    align-items: flex-start;
+  }
+
+  .clinic-icon {
+    width: 3.4vmin;
+    height: 3.4vmin;
+    color: var(--cyan);
+    margin-top: 0.2vmin;
+  }
+
+  .clinic-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .clinic-row .text {
+    font-size: 1.95vmin;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+
+  .clinic-row .text .muted {
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+
+  .clinic-row .text strong {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .clinic-row .label {
+    font-size: 1.1vmin;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 0.5vmin;
+  }
+
+  /* Phone/Fax inline split */
+  .contact-split {
+    display: flex;
+    gap: 3vmin;
+    flex-wrap: wrap;
+  }
+
+  .contact-split .item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2vmin;
+  }
+
+  .contact-split .item .num {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 2.4vmin;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .contact-split .item .num .accent-tel { color: var(--cyan-dark); }
+
+  /* ==================== RIGHT — After-Hours Partners ==================== */
+  .secondary {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8vmin;
+    min-height: 0;
+    animation: fadeUp 0.9s 0.3s both cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .secondary-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2vmin;
+    padding-bottom: 1.5vmin;
+    border-bottom: 0.1vmin solid var(--rule);
+  }
+
+  .secondary-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 1vmin;
+    font-size: 1.3vmin;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red-dark);
+    align-self: flex-start;
+  }
+
+  .secondary-kicker .tick {
+    width: 1.4vmin;
+    height: 0.25vmin;
+    background: var(--red);
+    border-radius: 0.2vmin;
+  }
+
+  .secondary-intro {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 2vmin;
+    line-height: 1.4;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    max-width: 52ch;
+  }
+
+  .secondary-intro strong {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .partner-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6vmin;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .partner {
+    background: #ffffff;
+    border: 0.12vmin solid var(--rule);
+    border-radius: 1vmin;
+    padding: 2.2vmin 2.8vmin;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5vmin;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0.4vmin 1.2vmin rgba(26, 37, 48, 0.025);
+    flex: 1;
+    min-height: 0;
+  }
+
+  .partner::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0.5vmin;
+  }
+
+  .partner-1 { animation: fadeUp 0.7s 0.5s both; }
+  .partner-2 { animation: fadeUp 0.7s 0.62s both; }
+  .partner-3 { animation: fadeUp 0.7s 0.74s both; }
+
+  .partner-1::before { background: var(--amber); }
+  .partner-2::before { background: var(--green); }
+  .partner-3::before { background: var(--red); }
+
+  /* TOP: number on left, name + hours stacked on right */
+  .partner-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.8vmin;
+  }
+
+  .partner-top-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9vmin;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .partner-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 3.2vmin;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .partner-1 .partner-num { color: var(--amber); }
+  .partner-2 .partner-num { color: var(--green); }
+  .partner-3 .partner-num { color: var(--red); }
+
+  .partner-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 2.8vmin;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+
+  /* Hours pill — color-matched to card */
+  .hours-pill {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8vmin;
+    padding: 0.7vmin 1.4vmin;
+    border-radius: 10vmin;
+    font-size: 1.25vmin;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .hours-pill .mini-dot {
+    width: 0.7vmin;
+    height: 0.7vmin;
+    border-radius: 50%;
+  }
+
+  .partner-1 .hours-pill {
+    background: var(--amber-soft);
+    color: var(--amber-dark);
+  }
+  .partner-1 .hours-pill .mini-dot { background: var(--amber); }
+
+  .partner-2 .hours-pill,
+  .partner-3 .hours-pill {
+    background: var(--green-soft);
+    color: var(--green-dark);
+  }
+  .partner-2 .hours-pill .mini-dot,
+  .partner-3 .hours-pill .mini-dot {
+    background: var(--green);
+    animation: pulse-green 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-green {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.7); }
+  }
+
+  /* BOTTOM ROW: address + phone/fax, split */
+  .partner-bottom {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3vmin;
+    align-items: flex-end;
+    padding-top: 1.4vmin;
+    border-top: 0.1vmin solid var(--rule);
+  }
+
+  .partner-address-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2vmin;
+    min-width: 0;
+  }
+
+  .partner-icon {
+    flex-shrink: 0;
+    width: 2.4vmin;
+    height: 2.4vmin;
+    color: var(--ink-muted);
+    margin-top: 0.2vmin;
+  }
+
+  .partner-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .partner-address {
+    font-size: 1.6vmin;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--ink-soft);
+  }
+
+  .partner-phone-block {
+    display: flex;
+    align-items: center;
+    gap: 1.2vmin;
+    flex-shrink: 0;
+  }
+
+  .partner-phone-icon {
+    width: 3.2vmin;
+    height: 3.2vmin;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #ffffff;
+    flex-shrink: 0;
+  }
+
+  .partner-phone-icon svg {
+    width: 1.7vmin;
+    height: 1.7vmin;
+  }
+
+  .partner-1 .partner-phone-icon { background: var(--amber); }
+  .partner-2 .partner-phone-icon { background: var(--green); }
+  .partner-3 .partner-phone-icon { background: var(--red); }
+
+  .partner-phone-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+
+  .partner-phone-label {
+    font-size: 1vmin;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 0.3vmin;
+  }
+
+  .partner-tel {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 2.3vmin;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    position: relative;
+    z-index: 2;
+    height: 6vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6vmin;
+    border-top: 0.15vmin solid var(--rule);
+    background: rgba(245, 243, 237, 0.5);
+    backdrop-filter: blur(6px);
+  }
+
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 1.6vmin;
+    font-size: 1.2vmin;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .color-dots {
+    display: inline-flex;
+    gap: 0.6vmin;
+    align-items: center;
+  }
+
+  .color-dots span {
+    width: 0.9vmin;
+    height: 0.9vmin;
+    border-radius: 50%;
+  }
+
+  .color-dots span:nth-child(1) { background: var(--cyan); }
+  .color-dots span:nth-child(2) { background: var(--red); }
+  .color-dots span:nth-child(3) { background: var(--amber); }
+  .color-dots span:nth-child(4) { background: var(--green); }
+
+  .footer-right {
+    font-size: 1.2vmin;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(2vmin); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <div class="meta">
+        <div class="top">Long Beach</div>
+        <div class="bottom">Human Resources</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="pulse"></div>
+      <div class="txt">Medical Clinics</div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- LEFT: Occupational Health Services -->
+    <section class="primary">
+      <div class="primary-eyebrow">
+        <div class="dot"></div>
+        <span>During Business Hours</span>
+      </div>
+
+      <h1>If you require medical attention <em>beyond</em> first aide, report to:</h1>
+
+      <div class="clinic-card">
+        <div class="clinic-name">Occupational Health Services Clinic</div>
+
+        <div class="clinic-divider"></div>
+
+        <!-- Address -->
+        <div class="clinic-row">
+          <div class="clinic-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div class="text">
+            <div class="label">Address</div>
+            4900 Airport Plaza Drive, Suite 110<br>
+            <span class="muted">Long Beach, CA 90815</span>
+          </div>
+        </div>
+
+        <div class="clinic-divider"></div>
+
+        <!-- Phone / Fax -->
+        <div class="clinic-row">
+          <div class="clinic-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <div class="text" style="width: 100%;">
+            <div class="label">Contact</div>
+            <div class="contact-split">
+              <div class="item">
+                <span class="num"><span class="accent-tel">Tel</span> 562 570 4053</span>
+              </div>
+              <div class="item">
+                <span class="num"><span class="accent-tel">Fax</span> 562 570 4350</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="clinic-divider"></div>
+
+        <!-- Hours -->
+        <div class="clinic-row">
+          <div class="clinic-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div class="text">
+            <div class="label">Hours</div>
+            Mon – Fri &nbsp;·&nbsp; <strong>7:30 am – 4:30 pm</strong><br>
+            <span class="muted">Excluding City Holidays</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: After-Hours Partners -->
+    <section class="secondary">
+      <div class="secondary-header">
+        <div class="secondary-kicker">
+          <span class="tick"></span>
+          <span>After Hours &amp; Weekends</span>
+        </div>
+        <div class="secondary-intro">
+          If an injury or illness occurs <strong>outside of O.H. business hours</strong>, please report to the nearest urgent care, ER, or partner facility listed below. <strong>Please call the partner facility / clinic when you are en route.</strong>
+        </div>
+      </div>
+
+      <div class="partner-list">
+
+        <div class="partner partner-1">
+          <div class="partner-top">
+            <div class="partner-num">01</div>
+            <div class="partner-top-right">
+              <div class="partner-name">Agile Occupational Medicine</div>
+              <div class="hours-pill">
+                <span class="mini-dot"></span>
+                <span>Mon – Fri &nbsp;·&nbsp; 8:30a – 5:00p</span>
+              </div>
+            </div>
+          </div>
+          <div class="partner-bottom">
+            <div class="partner-address-block">
+              <div class="partner-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div class="partner-address">445 E Anaheim Street, Wilmington, CA 90744</div>
+            </div>
+            <div class="partner-phone-block">
+              <div class="partner-phone-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+              <div class="partner-phone-text">
+                <div class="partner-phone-label">Call</div>
+                <div class="partner-tel">562 276 3798</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="partner partner-2">
+          <div class="partner-top">
+            <div class="partner-num">02</div>
+            <div class="partner-top-right">
+              <div class="partner-name">CareOnsite</div>
+              <div class="hours-pill">
+                <span class="mini-dot"></span>
+                <span>Available 24 / 7</span>
+              </div>
+            </div>
+          </div>
+          <div class="partner-bottom">
+            <div class="partner-address-block">
+              <div class="partner-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div class="partner-address">20300 S Vermont Avenue, Torrance, CA 90502</div>
+            </div>
+            <div class="partner-phone-block">
+              <div class="partner-phone-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+              <div class="partner-phone-text">
+                <div class="partner-phone-label">Call</div>
+                <div class="partner-tel">562 437 0831</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="partner partner-3">
+          <div class="partner-top">
+            <div class="partner-num">03</div>
+            <div class="partner-top-right">
+              <div class="partner-name">Akeso Occupational Health</div>
+              <div class="hours-pill">
+                <span class="mini-dot"></span>
+                <span>Available 24 / 7</span>
+              </div>
+            </div>
+          </div>
+          <div class="partner-bottom">
+            <div class="partner-address-block">
+              <div class="partner-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div class="partner-address">5203 Lakewood Boulevard, Suite 8, Lakewood, CA 90712</div>
+            </div>
+            <div class="partner-phone-block">
+              <div class="partner-phone-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+              <div class="partner-phone-text">
+                <div class="partner-phone-label">Call</div>
+                <div class="partner-tel">562 633 2273</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-left">
+      <div class="color-dots"><span></span><span></span><span></span><span></span></div>
+      <span>Staff Safety Notice</span>
+    </div>
+    <div class="footer-right"></div>
+  </footer>
+
+</div>
+</body>
+</html>
